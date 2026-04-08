@@ -14,8 +14,10 @@ source:
 
 build:
   noarch: python
-  number: 0
-  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 1
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+    - rm -rf ${SP_DIR}/pystormtracker/data/test
   python:
     entry_points:
       - stormtracker = pystormtracker.cli:main
