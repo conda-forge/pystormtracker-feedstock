@@ -14,7 +14,7 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   python:
     entry_points:
@@ -54,16 +54,15 @@ tests:
   - script:
       - stormtracker --help
       - pst-convert --help
-      - pytest --run-all
+      - pytest
     requirements:
       run:
         - pooch >=1.9.0
         - pytest >=9.0.2
     files:
       source:
-        - pyproject.toml
-        - data/
         - tests/
+        - pyproject.toml
 
 about:
   summary: A High-Performance Cyclone Tracker in Python
