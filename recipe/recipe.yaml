@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   python_min: "3.11"
-  version: "0.4.2"
+  version: "0.5.0"
 
 package:
   name: pystormtracker
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/P/PyStormTracker/pystormtracker-${{ version }}.tar.gz
-  sha256: 6dab77dc3c54c3bd7c513b50bafa3cdba4c654e2c516b980fe530ca93ead0ff5
+  sha256: e4cd51004049a9a781f7f49ba2f96140e8db4da1e1603386e31e110665a84e91
 
 build:
   noarch: python
@@ -19,6 +19,7 @@ build:
   python:
     entry_points:
       - stormtracker = pystormtracker.cli:main
+      - pst-convert = pystormtracker.convert:main
 
 requirements:
   host:
@@ -27,14 +28,20 @@ requirements:
     - pip
   run:
     - python >=${{ python_min }}
-    - dask-core >=2024.1.0
-    - h5netcdf >=1.0.0
-    - numpy >=1.24.0
-    - numba >=0.60.0
-    - xarray >=2024.9.0
+    - aiohttp !=4.0.0a0, !=4.0.0a1
     - cfgrib >=0.9.15.1
+    - dask-core >=2024.1.0
+    - ducc0 >=0.33.0
+    - fsspec >=2024.9.0
+    - h5netcdf >=1.5.0
+    - h5py >=3.13.0
     - mpi4py >=4.1.0
     - netcdf4 >=1.6.1
+    - numba >=0.62
+    - numpy >=1.26
+    - scipy >=1.10.0
+    - xarray >=2024.9.0
+    - zarr >=3.0
 
 tests:
   - python:
@@ -46,15 +53,16 @@ tests:
       pip_check: true
   - script:
       - stormtracker --help
+      - pst-convert --help
       - pytest --run-all
     requirements:
       run:
-        - pytest >=9.0.2
         - pooch >=1.9.0
+        - pytest >=9.0.2
     files:
       source:
+        - data/
         - tests/
-        - data/test/tracks/
 
 about:
   summary: A High-Performance Cyclone Tracker in Python
