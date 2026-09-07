@@ -23,8 +23,9 @@ build:
 requirements:
   host:
     - python ${{ python_min }}.*
-    - hatchling
+    - hatchling >=1.27
     - pip
+
   run:
     - python >=${{ python_min }}
 
@@ -41,10 +42,11 @@ requirements:
 
     # EOF
     - xeofs >=3.0.3
+    - statsmodels >=0.14.0
 
     # GRIB
     - cfgrib >=0.9.15.1
-    - eccodes >=2.46.0
+    - python-eccodes >=2.46.0
 
     # MPI
     - mpi4py >=4.1.0
@@ -71,6 +73,7 @@ tests:
       - pytest
     requirements:
       run:
+        - jsonschema >=4.26.0
         - pooch >=1.9.0
         - pytest >=9.1.1
     files:
