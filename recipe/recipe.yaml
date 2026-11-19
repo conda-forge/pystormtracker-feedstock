@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   python_min: "3.12"
-  version: "0.8.0"
+  version: "0.8.1"
 
 package:
   name: pystormtracker
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/P/PyStormTracker/pystormtracker-${{ version }}.tar.gz
-  sha256: ed6982e1ef9f197f5326b0d5c1a2d3f4f0d3319eeccb636411a604ea43f061d9
+  sha256: da13c0de2d1e3176782cee75000d873f305755e02b891573e19b88d9eae87fef
 
 build:
   noarch: python
